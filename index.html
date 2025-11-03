@@ -9,6 +9,180 @@
     .card { text-align:center; max-width:600px; padding:2rem; border-radius:12px; box-shadow:0 6px 24px rgba(0,0,0,.08); }
   </style>
 </head>
+  <!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tableau triable</title>
+  <style>
+    /* Styles de base */
+    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; padding: 20px; background:#f7f7fb; color:#111; }
+    .table-wrap { max-width: 900px; margin: 0 auto; background:#fff; border-radius:8px; box-shadow:0 2px 6px rgba(16,24,40,0.06); overflow:hidden; }
+    table { width:100%; border-collapse:collapse; table-layout:fixed; }
+    th, td { padding:12px 14px; text-align:left; border-bottom:1px solid #eee; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    thead th { background:#fafafa; cursor:pointer; user-select:none; position:relative; font-weight:600; }
+
+    /* Indicateur de tri (flèches) */
+    .sort-indicator { font-size:12px; margin-left:8px; color:#666; }
+    thead th.asc .sort-indicator::after  { content: "▲"; display:inline-block; margin-left:6px; }
+    thead th.desc .sort-indicator::after { content: "▼"; display:inline-block; margin-left:6px; }
+
+    /* Colonne largeur */
+    th.title, td.title { width:45%; }
+    th.authors, td.authors { width:35%; }
+    th.date, td.date { width:20%; }
+
+    /* Responsive: empiler les cellules sur petit écran */
+    @media (max-width:640px){
+      table, thead, tbody, th, td, tr { display:block; }
+      thead { display:none; }
+      tr { margin-bottom:12px; background:#fff; border-radius:6px; box-shadow:0 1px 3px rgba(0,0,0,0.04); padding:10px; }
+      td { display:flex; justify-content:space-between; padding:8px 10px; border-bottom:none; }
+      td::before { content: attr(data-label); font-weight:600; color:#444; margin-right:8px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="table-wrap">
+  <table id="booksTable" aria-describedby="table-desc">
+    <caption id="table-desc" style="text-align:left;padding:12px 14px;font-weight:600;">Liste de livres — cliquez sur un en-tête pour trier</caption>
+    <thead>
+      <tr>
+        <th class="title" data-key="title" scope="col">Titre <span class="sort-indicator"></span></th>
+        <th class="authors" data-key="authors" scope="col">Auteures <span class="sort-indicator"></span></th>
+        <th class="date" data-key="date" scope="col">Date de parution <span class="sort-indicator"></span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="title" data-label="Titre">Le Château</td>
+        <td class="authors" data-label="Auteures">A. Camus</td>
+        <td class="date" data-label="Date de parution">1951-06-01</td>
+      </tr>
+      <tr>
+        <td class="title" data-label="Titre">Zéphyr</td>
+        <td class="authors" data-label="Auteures">B. Dubois, C. Martin</td>
+        <td class="date" data-label="Date de parution">2020-09-10</td>
+      </tr>
+      <tr>
+        <td class="title" data-label="Titre">Aventures</td>
+        <td class="authors" data-label="Auteures">C. Martin</td>
+        <td class="date" data-label="Date de parution">1999-03-23</td>
+      </tr>
+      <tr>
+        <td class="title" data-label="Titre">Éléments</td>
+        <td class="authors" data-label="Auteures">D. Lefèvre</td>
+        <td class="date" data-label="Date de parution">2012-11-05</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<script>
+/*
+  Tri du tableau:
+  - Les <th> portent data-key qui indique la colonne: "title", "authors", "date".
+  - Le tri alterne asc/desc à chaque clic.
+  - La colonne "date" est triée comme date ISO (YYYY-MM-DD) si possible.
+  - Les autres colonnes sont triées en texte (localeCompare avec sensibilité aux accents).
+*/
+
+(function(){
+  const table = document.getElementById('booksTable');
+  const tbody = table.tBodies[0];
+  const headers = table.tHead.querySelectorAll('th');
+  let sortState = { key: null, dir: 'asc' }; // dir: 'asc' ou 'desc'
+
+  // Récupérer les lignes du tbody comme tableau
+  function getRows() {
+    return Array.from(tbody.querySelectorAll('tr'));
+  }
+
+  // Extraire valeur d'une cellule pour une clé
+  function cellValue(row, key) {
+    const map = { title: 'title', authors: 'authors', date: 'date' };
+    const td = row.querySelector('td.' + map[key]);
+    return td ? td.textContent.trim() : '';
+  }
+
+  // Détecte si valeur est une date ISO (YYYY-MM-DD) ou timestamp
+  function isISODateString(s) {
+    return /^\d{4}-\d{2}-\d{2}/.test(s);
+  }
+
+  // Fonction de comparaison
+  function compareRows(a, b, key, dir) {
+    const va = cellValue(a, key);
+    const vb = cellValue(b, key);
+
+    // Date: comparer comme Date si possible
+    if (key === 'date' && (isISODateString(va) || isISODateString(vb))) {
+      const da = va ? new Date(va) : new Date(0);
+      const db = vb ? new Date(vb) : new Date(0);
+      return (da - db) * (dir === 'asc' ? 1 : -1);
+    }
+
+    // Nombre: essayer convertir en nombre
+    const na = parseFloat(va.replace(',', '.'));
+    const nb = parseFloat(vb.replace(',', '.'));
+    if (!isNaN(na) && !isNaN(nb)) {
+      return (na - nb) * (dir === 'asc' ? 1 : -1);
+    }
+
+    // Texte: localeCompare pour gérer accents et casse
+    return va.localeCompare(vb, 'fr', { sensitivity: 'base', numeric: true }) * (dir === 'asc' ? 1 : -1);
+  }
+
+  // Mettre à jour classes d'en-tête pour l'indicateur de tri
+  function updateHeaderClasses() {
+    headers.forEach(h => {
+      h.classList.remove('asc', 'desc');
+      const key = h.dataset.key;
+      if (key === sortState.key) h.classList.add(sortState.dir);
+    });
+  }
+
+  // Trier et réinsérer les lignes
+  function sortBy(key) {
+    const rows = getRows();
+    // Définir direction: si même clé, inverser, sinon asc par défaut
+    if (sortState.key === key) {
+      sortState.dir = sortState.dir === 'asc' ? 'desc' : 'asc';
+    } else {
+      sortState.key = key;
+      sortState.dir = 'asc';
+    }
+
+    rows.sort((a,b) => compareRows(a, b, key, sortState.dir));
+
+    // Réinsertion optimisée
+    const frag = document.createDocumentFragment();
+    rows.forEach(r => frag.appendChild(r));
+    tbody.appendChild(frag);
+
+    updateHeaderClasses();
+  }
+
+  // Attacher gestionnaires de clic sur les en-têtes
+  headers.forEach(h => {
+    h.addEventListener('click', () => sortBy(h.dataset.key));
+    // Pour accessibilité: tri via Enter/Space
+    h.tabIndex = 0;
+    h.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        sortBy(h.dataset.key);
+      }
+    });
+  });
+
+  // Optionnel: tri initial par titre asc
+  sortBy('title');
+})();
+</script>
+
 <body>
   <div class="card">
     <h1>Bonjour</h1>
