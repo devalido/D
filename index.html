@@ -1,45 +1,37 @@
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Mon site minimal</title>
-  <style>
-    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; display:flex; align-items:center; justify-content:center; height:100vh; margin:0; }
-    .card { text-align:center; max-width:600px; padding:2rem; border-radius:12px; box-shadow:0 6px 24px rgba(0,0,0,.08); }
-  </style>
-</head>
-  <!doctype html>
-<html lang="fr">
-<head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Tableau triable</title>
+  <title>Tableau triable — couvertures, date modif, poids, licence</title>
   <style>
-    /* Styles de base */
-    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; padding: 20px; background:#f7f7fb; color:#111; }
-    .table-wrap { max-width: 900px; margin: 0 auto; background:#fff; border-radius:8px; box-shadow:0 2px 6px rgba(16,24,40,0.06); overflow:hidden; }
+    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; padding:20px; background:#f7f7fb; color:#111; }
+    .table-wrap { max-width:1100px; margin:0 auto; background:#fff; border-radius:8px; box-shadow:0 2px 6px rgba(16,24,40,0.06); overflow:hidden; }
     table { width:100%; border-collapse:collapse; table-layout:fixed; }
-    th, td { padding:12px 14px; text-align:left; border-bottom:1px solid #eee; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    th, td { padding:10px 12px; text-align:left; border-bottom:1px solid #eee; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; vertical-align:middle; }
     thead th { background:#fafafa; cursor:pointer; user-select:none; position:relative; font-weight:600; }
-
-    /* Indicateur de tri (flèches) */
     .sort-indicator { font-size:12px; margin-left:8px; color:#666; }
     thead th.asc .sort-indicator::after  { content: "▲"; display:inline-block; margin-left:6px; }
     thead th.desc .sort-indicator::after { content: "▼"; display:inline-block; margin-left:6px; }
 
-    /* Colonne largeur */
-    th.title, td.title { width:45%; }
-    th.authors, td.authors { width:35%; }
-    th.date, td.date { width:20%; }
+    /* Largeurs des colonnes */
+    th.cover, td.cover { width:64px; text-align:center; }
+    th.title, td.title { width:33%; }
+    th.authors, td.authors { width:22%; }
+    th.date, td.date { width:12%; }
+    th.size, td.size { width:10%; }
+    th.license, td.license { width:9%; }
 
-    /* Responsive: empiler les cellules sur petit écran */
-    @media (max-width:640px){
+    /* Miniature couverture */
+    .thumb { width:48px; height:64px; object-fit:cover; border-radius:4px; display:inline-block; background:#f0f0f2; }
+
+    @media (max-width:760px){
       table, thead, tbody, th, td, tr { display:block; }
       thead { display:none; }
       tr { margin-bottom:12px; background:#fff; border-radius:6px; box-shadow:0 1px 3px rgba(0,0,0,0.04); padding:10px; }
       td { display:flex; justify-content:space-between; padding:8px 10px; border-bottom:none; }
       td::before { content: attr(data-label); font-weight:600; color:#444; margin-right:8px; }
+      .cover { text-align:left; }
     }
   </style>
 </head>
@@ -47,146 +39,145 @@
 
 <div class="table-wrap">
   <table id="booksTable" aria-describedby="table-desc">
-    <caption id="table-desc" style="text-align:left;padding:12px 14px;font-weight:600;">Liste de livres — cliquez sur un en-tête pour trier</caption>
+    <caption id="table-desc" style="text-align:left;padding:12px 14px;font-weight:600;">
+      Brochures — cliquez sur un en-tête pour trier
+    </caption>
     <thead>
       <tr>
+        <th class="cover" data-key="modified" scope="col" title="Date de modification du fichier"> </th>
         <th class="title" data-key="title" scope="col">Titre <span class="sort-indicator"></span></th>
         <th class="authors" data-key="authors" scope="col">Auteures <span class="sort-indicator"></span></th>
         <th class="date" data-key="date" scope="col">Date de parution <span class="sort-indicator"></span></th>
+        <th class="size" data-key="size" scope="col">Poids <span class="sort-indicator"></span></th>
+        <th class="license" data-key="license" scope="col">Licence <span class="sort-indicator"></span></th>
       </tr>
     </thead>
     <tbody>
+      <!-- Exemple de lignes : note les data-modified et data-size -->
       <tr>
+        <td class="cover" data-label="Couverture">
+          <img class="thumb" src="cover1.jpg" alt="Couverture Le Château" />
+        </td>
         <td class="title" data-label="Titre">Le Château</td>
         <td class="authors" data-label="Auteures">A. Camus</td>
         <td class="date" data-label="Date de parution">1951-06-01</td>
+        <td class="size" data-label="Poids" data-size="124800">122 KB</td>
+        <td class="license" data-label="Licence">CC BY-SA 4.0</td>
       </tr>
+
       <tr>
+        <td class="cover" data-label="Couverture">
+          <img class="thumb" src="cover2.jpg" alt="Couverture Zéphyr" />
+        </td>
         <td class="title" data-label="Titre">Zéphyr</td>
         <td class="authors" data-label="Auteures">B. Dubois, C. Martin</td>
         <td class="date" data-label="Date de parution">2020-09-10</td>
+        <td class="size" data-label="Poids" data-size="2048000">2.0 MB</td>
+        <td class="license" data-label="Licence">CC BY-NC</td>
       </tr>
+
       <tr>
+        <td class="cover" data-label="Couverture">
+          <img class="thumb" src="cover3.jpg" alt="Couverture Aventures" />
+        </td>
         <td class="title" data-label="Titre">Aventures</td>
         <td class="authors" data-label="Auteures">C. Martin</td>
         <td class="date" data-label="Date de parution">1999-03-23</td>
+        <td class="size" data-label="Poids" data-size="512000">500 KB</td>
+        <td class="license" data-label="Licence">Domaine public</td>
       </tr>
+
       <tr>
+        <td class="cover" data-label="Couverture">
+          <div class="thumb" aria-hidden="true"></div>
+        </td>
         <td class="title" data-label="Titre">Éléments</td>
         <td class="authors" data-label="Auteures">D. Lefèvre</td>
         <td class="date" data-label="Date de parution">2012-11-05</td>
+        <td class="size" data-label="Poids" data-size="98765">96 KB</td>
+        <td class="license" data-label="Licence">CC BY</td>
       </tr>
     </tbody>
   </table>
 </div>
 
 <script>
-/*
-  Tri du tableau:
-  - Les <th> portent data-key qui indique la colonne: "title", "authors", "date".
-  - Le tri alterne asc/desc à chaque clic.
-  - La colonne "date" est triée comme date ISO (YYYY-MM-DD) si possible.
-  - Les autres colonnes sont triées en texte (localeCompare avec sensibilité aux accents).
-*/
-
 (function(){
   const table = document.getElementById('booksTable');
   const tbody = table.tBodies[0];
   const headers = table.tHead.querySelectorAll('th');
-  let sortState = { key: null, dir: 'asc' }; // dir: 'asc' ou 'desc'
+  let sortState = { key: null, dir: 'asc' };
 
-  // Récupérer les lignes du tbody comme tableau
-  function getRows() {
-    return Array.from(tbody.querySelectorAll('tr'));
-  }
+  function getRows(){ return Array.from(tbody.querySelectorAll('tr')); }
 
-  // Extraire valeur d'une cellule pour une clé
-  function cellValue(row, key) {
-    const map = { title: 'title', authors: 'authors', date: 'date' };
-    const td = row.querySelector('td.' + map[key]);
+  function cellValue(row, key){
+    if (key === 'modified') {
+      // data-modified attendu sur la ligne (ISO) ou sur la cellule .cover (data-modified)
+      const cover = row.querySelector('td.cover');
+      const v = cover ? (cover.dataset.modified || cover.getAttribute('data-modified') || '') : '';
+      return v.trim();
+    }
+    if (key === 'size') {
+      const td = row.querySelector('td.size');
+      const raw = td ? (td.dataset.size || td.getAttribute('data-size') || td.textContent.trim()) : '';
+      return raw.toString().trim();
+    }
+    const td = row.querySelector('td.' + key) || row.querySelector('td.' + ({title:'title', authors:'authors', date:'date', license:'license'}[key] || ''));
     return td ? td.textContent.trim() : '';
   }
 
-  // Détecte si valeur est une date ISO (YYYY-MM-DD) ou timestamp
-  function isISODateString(s) {
-    return /^\d{4}-\d{2}-\d{2}/.test(s);
-  }
+  function isISODateString(s){ return /^\d{4}-\d{2}-\d{2}/.test(s); }
 
-  // Fonction de comparaison
-  function compareRows(a, b, key, dir) {
-    const va = cellValue(a, key);
-    const vb = cellValue(b, key);
+  function compareRows(a,b,key,dir){
+    const va = cellValue(a,key);
+    const vb = cellValue(b,key);
 
-    // Date: comparer comme Date si possible
-    if (key === 'date' && (isISODateString(va) || isISODateString(vb))) {
+    // modified/date: ISO dates
+    if ((key === 'date' || key === 'modified') && (isISODateString(va) || isISODateString(vb))) {
       const da = va ? new Date(va) : new Date(0);
       const db = vb ? new Date(vb) : new Date(0);
       return (da - db) * (dir === 'asc' ? 1 : -1);
     }
 
-    // Nombre: essayer convertir en nombre
-    const na = parseFloat(va.replace(',', '.'));
-    const nb = parseFloat(vb.replace(',', '.'));
-    if (!isNaN(na) && !isNaN(nb)) {
+    if (key === 'size') {
+      const na = parseFloat(va.toString().replace(/[^\d.-]/g,'')) || 0;
+      const nb = parseFloat(vb.toString().replace(/[^\d.-]/g,'')) || 0;
       return (na - nb) * (dir === 'asc' ? 1 : -1);
     }
 
-    // Texte: localeCompare pour gérer accents et casse
+    // Texte par défaut
     return va.localeCompare(vb, 'fr', { sensitivity: 'base', numeric: true }) * (dir === 'asc' ? 1 : -1);
   }
 
-  // Mettre à jour classes d'en-tête pour l'indicateur de tri
-  function updateHeaderClasses() {
+  function updateHeaderClasses(){
     headers.forEach(h => {
-      h.classList.remove('asc', 'desc');
+      h.classList.remove('asc','desc');
       const key = h.dataset.key;
       if (key === sortState.key) h.classList.add(sortState.dir);
     });
   }
 
-  // Trier et réinsérer les lignes
-  function sortBy(key) {
+  function sortBy(key){
     const rows = getRows();
-    // Définir direction: si même clé, inverser, sinon asc par défaut
-    if (sortState.key === key) {
-      sortState.dir = sortState.dir === 'asc' ? 'desc' : 'asc';
-    } else {
-      sortState.key = key;
-      sortState.dir = 'asc';
-    }
+    if (sortState.key === key) sortState.dir = sortState.dir === 'asc' ? 'desc' : 'asc';
+    else { sortState.key = key; sortState.dir = 'asc'; }
 
-    rows.sort((a,b) => compareRows(a, b, key, sortState.dir));
-
-    // Réinsertion optimisée
+    rows.sort((a,b) => compareRows(a,b,key,sortState.dir));
     const frag = document.createDocumentFragment();
     rows.forEach(r => frag.appendChild(r));
     tbody.appendChild(frag);
-
     updateHeaderClasses();
   }
 
-  // Attacher gestionnaires de clic sur les en-têtes
   headers.forEach(h => {
     h.addEventListener('click', () => sortBy(h.dataset.key));
-    // Pour accessibilité: tri via Enter/Space
     h.tabIndex = 0;
-    h.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        sortBy(h.dataset.key);
-      }
+    h.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); sortBy(h.dataset.key); }
     });
   });
 
-  // Optionnel: tri initial par titre asc
-  sortBy('title');
+  // Tri initial par date de modification (modified) si présent, sinon par titre
+  sortBy('modified');
 })();
 </script>
-
-<body>
-  <div class="card">
-    <h1>Bonjour</h1>
-    <p>Ceci est un site minimaliste hébergé sur GitHub Pages.</p>
-  </div>
-</body>
-</html>
