@@ -1,165 +1,2888 @@
-<!doctype html>
-<html lang="fr">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>La dévalidothèque en ligne</title>
-  <style>
-    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; padding:20px; background:#f7f7fb; color:#111; }
-    .table-wrap { max-width:1100px; margin:0 auto; background:#fff; border-radius:8px; box-shadow:0 2px 6px rgba(16,24,40,0.06); overflow:hidden; }
-    table { width:100%; border-collapse:collapse; table-layout:fixed; }
-    th, td { padding:10px 12px; text-align:left; border-bottom:1px solid #eee; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; vertical-align:middle; }
-    thead th { background:#fafafa; cursor:pointer; user-select:none; position:relative; font-weight:600; }
-    .sort-indicator { font-size:12px; margin-left:8px; color:#666; }
-    thead th.asc .sort-indicator::after  { content: "▲"; display:inline-block; margin-left:6px; }
-    thead th.desc .sort-indicator::after { content: "▼"; display:inline-block; margin-left:6px; }
-
-    /* Largeurs des colonnes */
-    th.cover, td.cover { width:64px; text-align:center; }
-    th.title, td.title { width:33%; }
-    th.authors, td.authors { width:22%; }
-    th.date, td.date { width:12%; }
-    th.size, td.size { width:10%; }
-    th.license, td.license { width:9%; }
-
-    /* Miniature couverture */
-    .thumb { width:48px; height:64px; object-fit:cover; border-radius:4px; display:inline-block; background:#f0f0f2; }
-
-    @media (max-width:760px){
-      table, thead, tbody, th, td, tr { display:block; }
-      thead { display:none; }
-      tr { margin-bottom:12px; background:#fff; border-radius:6px; box-shadow:0 1px 3px rgba(0,0,0,0.04); padding:10px; }
-      td { display:flex; justify-content:space-between; padding:8px 10px; border-bottom:none; }
-      td::before { content: attr(data-label); font-weight:600; color:#444; margin-right:8px; }
-      .cover { text-align:left; }
-    }
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>Table export</title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2022.3">
+  <style type="text/css">
+    body {background-color: #f1f2f9}
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: center; font: 12.0px 'Helvetica Neue'; color: #0c0c0c; -webkit-text-stroke: #0c0c0c}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Helvetica Neue'; color: #0c0c0c; -webkit-text-stroke: #0c0c0c}
+    span.s1 {font-kerning: none; background-color: #ffffff}
+    span.s2 {font-kerning: none}
+    table.t1 {border-collapse: collapse; table-layout: fixed}
+    td.td1 {width: 468.5px; background-color: #f7f7f7; border-style: solid; border-width: 0.0px 0.0px 1.0px 0.0px; border-color: #0c0c0c #0c0c0c #e5e5e5 #0c0c0c; padding: 8.0px 10.0px 8.0px 10.0px}
+    td.td2 {width: 57.9px; background-color: #f7f7f7; border-style: solid; border-width: 0.0px 0.0px 1.0px 0.0px; border-color: #0c0c0c #0c0c0c #e5e5e5 #0c0c0c; padding: 8.0px 10.0px 8.0px 10.0px}
+    td.td3 {width: 64.4px; background-color: #f7f7f7; border-style: solid; border-width: 0.0px 0.0px 1.0px 0.0px; border-color: #0c0c0c #0c0c0c #e5e5e5 #0c0c0c; padding: 8.0px 10.0px 8.0px 10.0px}
+    td.td4 {width: 113.3px; background-color: #f7f7f7; border-style: solid; border-width: 0.0px 0.0px 1.0px 0.0px; border-color: #0c0c0c #0c0c0c #e5e5e5 #0c0c0c; padding: 8.0px 10.0px 8.0px 10.0px}
+    td.td5 {width: 468.5px; border-style: solid; border-width: 0.0px 0.0px 1.0px 0.0px; border-color: #0c0c0c #0c0c0c #e5e5e5 #0c0c0c; padding: 8.0px 10.0px 8.0px 10.0px}
+    td.td6 {width: 57.9px; border-style: solid; border-width: 0.0px 0.0px 1.0px 0.0px; border-color: #0c0c0c #0c0c0c #e5e5e5 #0c0c0c; padding: 8.0px 10.0px 8.0px 10.0px}
+    td.td7 {width: 64.4px; border-style: solid; border-width: 0.0px 0.0px 1.0px 0.0px; border-color: #0c0c0c #0c0c0c #e5e5e5 #0c0c0c; padding: 8.0px 10.0px 8.0px 10.0px}
+    td.td8 {width: 113.3px; border-style: solid; border-width: 0.0px 0.0px 1.0px 0.0px; border-color: #0c0c0c #0c0c0c #e5e5e5 #0c0c0c; padding: 8.0px 10.0px 8.0px 10.0px}
   </style>
 </head>
 <body>
-
-<div class="table-wrap">
-  <table id="booksTable" aria-describedby="table-desc">
-    <caption id="table-desc" style="text-align:left;padding:12px 14px;font-weight:600;">
-      Brochures
-    </caption>
-    <thead>
-      <tr>
-        <th class="cover" data-key="modified" scope="col" title="Date de modification du fichier"> </th>
-        <th class="title" data-key="title" scope="col">Titre <span class="sort-indicator"></span></th>
-        <th class="authors" data-key="authors" scope="col">Auteures <span class="sort-indicator"></span></th>
-        <th class="pages" data-key="pages" scope="col">Nombre de pages <span class="sort-indicator"></span></th>
-        <th class="date" data-key="date" scope="col">Date de parution <span class="sort-indicator"></span></th>
-        <th class="size" data-key="size" scope="col">Poids <span class="sort-indicator"></span></th>
-        <th class="license" data-key="license" scope="col">Licence <span class="sort-indicator"></span></th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- Exemple de lignes : note les data-modified et data-size -->
-      <tr>
-        <td class="cover" data-label="Couverture">
-          <img class="thumb" src="cover1.jpg" alt="Couverture Le Château" />
-        </td>
-        <td class="title" data-label="Titre">CRIP - Compilation de textes à propos de Luttes handies</td>
-        <td class="authors" data-label="Auteures">Harriet de Gouge</td>
-        <td class="pages" data-label="Nombre de pages">52p</td>
-        <td class="date" data-label="Date de parution">2023</td>
-        <td class="size" data-label="Poids" data-size="124800">14Mo</td>
-        <td class="license" data-label="Licence">CC BY-SA 4.0</td>
-      </tr>
-
-      <tr>
-        <td class="cover" data-label="Couverture">
-          <img class="thumb" src="cover2.jpg" alt="Couverture Zéphyr" />
-        </td>
-        <td class="title" data-label="Titre">Toujours mal quelque part</td>
-        <td class="authors" data-label="Auteures">Harriet de Gouge</td>
-        <td class="pages" data-label="Nombre de pages">44p</td>
-        <td class="date" data-label="Date de parution">2024</td>
-        <td class="size" data-label="Poids" data-size="2048000">8Mo</td>
-        <td class="license" data-label="Licence">CC BY-NC</td>
-      </tr>
-
-    </tbody>
-  </table>
-</div>
-
-<script>
-(function(){
-  const table = document.getElementById('booksTable');
-  const tbody = table.tBodies[0];
-  const headers = table.tHead.querySelectorAll('th');
-  let sortState = { key: null, dir: 'asc' };
-
-  function getRows(){ return Array.from(tbody.querySelectorAll('tr')); }
-
-  function cellValue(row, key){
-    if (key === 'modified') {
-      // data-modified attendu sur la ligne (ISO) ou sur la cellule .cover (data-modified)
-      const cover = row.querySelector('td.cover');
-      const v = cover ? (cover.dataset.modified || cover.getAttribute('data-modified') || '') : '';
-      return v.trim();
-    }
-    if (key === 'size') {
-      const td = row.querySelector('td.size');
-      const raw = td ? (td.dataset.size || td.getAttribute('data-size') || td.textContent.trim()) : '';
-      return raw.toString().trim();
-    }
-    const td = row.querySelector('td.' + key) || row.querySelector('td.' + ({title:'title', authors:'authors', date:'date', license:'license'}[key] || ''));
-    return td ? td.textContent.trim() : '';
-  }
-
-  function isISODateString(s){ return /^\d{4}-\d{2}-\d{2}/.test(s); }
-
-  function compareRows(a,b,key,dir){
-    const va = cellValue(a,key);
-    const vb = cellValue(b,key);
-
-    // modified/date: ISO dates
-    if ((key === 'date' || key === 'modified') && (isISODateString(va) || isISODateString(vb))) {
-      const da = va ? new Date(va) : new Date(0);
-      const db = vb ? new Date(vb) : new Date(0);
-      return (da - db) * (dir === 'asc' ? 1 : -1);
-    }
-
-    if (key === 'size') {
-      const na = parseFloat(va.toString().replace(/[^\d.-]/g,'')) || 0;
-      const nb = parseFloat(vb.toString().replace(/[^\d.-]/g,'')) || 0;
-      return (na - nb) * (dir === 'asc' ? 1 : -1);
-    }
-
-    // Texte par défaut
-    return va.localeCompare(vb, 'fr', { sensitivity: 'base', numeric: true }) * (dir === 'asc' ? 1 : -1);
-  }
-
-  function updateHeaderClasses(){
-    headers.forEach(h => {
-      h.classList.remove('asc','desc');
-      const key = h.dataset.key;
-      if (key === sortState.key) h.classList.add(sortState.dir);
-    });
-  }
-
-  function sortBy(key){
-    const rows = getRows();
-    if (sortState.key === key) sortState.dir = sortState.dir === 'asc' ? 'desc' : 'asc';
-    else { sortState.key = key; sortState.dir = 'asc'; }
-
-    rows.sort((a,b) => compareRows(a,b,key,sortState.dir));
-    const frag = document.createDocumentFragment();
-    rows.forEach(r => frag.appendChild(r));
-    tbody.appendChild(frag);
-    updateHeaderClasses();
-  }
-
-  headers.forEach(h => {
-    h.addEventListener('click', () => sortBy(h.dataset.key));
-    h.tabIndex = 0;
-    h.addEventListener('keydown', e => {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); sortBy(h.dataset.key); }
-    });
-  });
-
-  // Tri initial par date de modification (modified) si présent, sinon par titre
-  sortBy('modified');
-})();
-</script>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p1"><span class="s1"><b>Fichier</b></span></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1"><b>Pages</b></span></p>
+      </td>
+      <td valign="middle" class="td3">
+        <p class="p1"><span class="s1"><b>Taille Ko</b></span></p>
+      </td>
+      <td valign="middle" class="td4">
+        <p class="p1"><span class="s1"><b>Date De Parution</b></span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">Interdependence_Crip_Collective_Care.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">38</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">2939.6</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">Marge-n6-conv.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">4</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">4538.3</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">a_la_folie-cahier.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">18</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">1190.4</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1"><span class="Apple-converted-space"> </span>completement-toque-timult8-conv.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">6</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">4422.4</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1"><span class="Apple-converted-space"> </span>dictature-du-mental-pour-impression-li.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">4</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">770.9</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1"><span class="Apple-converted-space"> </span>en-defense-de-l-anormalite-conv.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">10</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">2451.1</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1"><span class="Apple-converted-space"> </span>etranger-e-a-soi-pret-a-imprimer.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">20</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">1483.9</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1"><span class="Apple-converted-space"> </span>zine-fou-fol-et-final-conv.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">18</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">18757.9</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">Pour un antifascisme antivalidiste.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">6</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">611.5</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">guide accessibiliser un evenement_couleur.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">6</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">327.7</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">ROULE OU CRÈVE couverture.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">10.2</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">ROULE OU CRÈVE- interieur.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">14</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">136.0</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2024-09-20</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">couleurautodéfense_livret.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">65.8</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2024-09-05</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">couleurca roule_livret.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">115.8</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2024-09-05</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">couleurlangage non validiste_livret.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">117.7</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2024-09-05</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">couleurmemo-manif-pas-trop-validiste_livret.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">208.0</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2024-09-05</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">langage non validiste-couverture.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">141.9</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2024-09-20</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">langage non validiste-intérieur.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">6</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">78.4</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2024-09-20</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">memo-manif-pas-trop-validiste-couverture.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">171.3</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2024-09-20</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">memo-manif-pas-trop-validiste-interieur.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">10</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">1408.0</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2024-09-20</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">Feminisme et antivalidismeelle-doit-etre-folle.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">34</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">2180.3</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">Feminisme et antivalidismepiege-es-dans-le-changement.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">10</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">142.2</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">Feminisme et antivalidismey a pas viol.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">8</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">354.0</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">Travail &amp; AnticapitalismePour un antifascisme antivalidisteNB.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">6</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">739.2</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">Travail &amp; Anticapitalismeanti-JOP.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">4</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">1389.3</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">Travail &amp; Anticapitalismecontre les ESAT.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">10</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">1580.0</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2024-05-29</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">Anti-institutions d'enfermementabolition carcerale.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">4</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">1377.7</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">Anti-institutions d'enfermementalternatives au flicage.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">8</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">6360.3</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">Anti-institutions d'enfermementpsychiatrie la peur change-de camp.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">28</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">838.8</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">Anti-institutions d'enfermementsi cest contraint.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">6</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">408.8</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2019-06-11</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">10 points sur le covid 19.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">22</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">3088.6</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2024-09-05</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">activisme et traumatisme.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">103.4</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2007-06-24</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">auto defense sanitaire.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">15</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">646.1</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2024-09-05</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">cartografolie guide folie.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">10</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">866.1</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2018-07-18</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">depression comment te quitter.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">10</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">451.5</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">eviter l hopital.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">16</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">487.1</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">folie &amp; oppression.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">30</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">2707.4</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">guide Navigation eaux troubles.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">20</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">24879.7</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2021-02-15</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">guide pour decrocher des médicaments.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">36</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">15089.6</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">les ami.e.s.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">20</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">1208.8</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2015-02-11</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">petit guide autodéfense.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">4</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">150.2</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">plan-de crise.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">14</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">148.7</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">plaquette_info_droits.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">117.3</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2016-10-23</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">strategie-entente-de-voix.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">4</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">426.1</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">traverser une crise.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">656.0</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">anticapacitisme - marginalisé des luttes.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">6</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">665.8</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2024-07-08</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">comment-etre-une-alliee.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">4</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">470.2</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">et a la fin tout le monde perd.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">517.9</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">intersectionnalite entre emotions et obstacles.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">4</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">912.5</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">memo-manif-pas-trop-validiste.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">12</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">1540.0</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">milieu-militant-inclusif-neurodivergentes.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">4</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">360.3</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">militantisme ou marketting.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">558.9</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">pour des mouvements.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">12</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">1663.3</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">sur_le_psyvalidisme.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">6</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">1094.1</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">utopies crip.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">4</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">218.8</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">Encore des rêves indociles.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">6</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">2880.6</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2024-03-26</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">Hollow.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">8</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">3094.9</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">ROULE OU CRÈVE.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">16</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">137.5</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">allo_la_folie-conv.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">6</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">796.8</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">anorexie.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">8</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">377.7</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">avant de... final.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">16</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">3281.9</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2024-09-20</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">ca roule.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">30</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">546.5</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">maplus grande ambition.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">509.1</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2024-07-08</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">migraine-histoire-brute-conv.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">12</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">669.5</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">se liberer de la psychiatrie.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">30</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">2405.1</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">sur le fil de la folie.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">6</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">1516.2</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">Accessibiliser évènement -NB.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">6</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">325.6</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">En_Acces_Limite.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">22</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">295.4</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">Sexualités handiesL'Assistance Sexuelle - Med'H-conv.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">176.9</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">Sexualités handiesasexualite.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">10</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">3363.6</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2022-04-15</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">autodefense saintairev2-conv.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">8</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">701.8</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">autodefense saintairev2.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">16</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">709.1</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2024-09-06</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">avant de...-conv.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">16</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">628.5</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">avant de....pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">32</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">694.6</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2024-09-06</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">roule ou creve-conv.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">16</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">276.8</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">roule ou creve.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">32</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">296.6</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2024-09-06</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">velovalidisme_images.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">17</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">976.1</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2018-04-01</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">assistance sexuelleL’Assistance Sexuelle – Med'H.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">5</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">81.0</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2024-09-28</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">l'anticapacitisme marginalis des luttesautonomiedeclasse.org-Lanticapacitisme marginalisé des luttes.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">7</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">141.9</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2024-06-20</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">Autres brochuresA_Tu me fais violence! La rhétorique néolibérale de la blessure, du danger et du traumatisme.PDF</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">15</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">141.9</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2015-06-25</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">Devalid #1Ddevalid1N&amp;B.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">38</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">14163.6</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2025-04-04</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">Devalid #1Poster1.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">9575.2</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2024-06-17</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">Devalid #1carte devalid.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">1</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">508.6</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2024-06-17</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">Devalid #1version livret finalisée.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">38</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">43415.0</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2024-06-17</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">Définitions - autonomie et inclusion.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">3</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">45.1</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2024-06-19</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">Invitation Recherche particip.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">1</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">70.9</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2025-02-24</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">Justice-handiedix-principes-de-justice-handie.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">1</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">85.1</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2024-03-08</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">Le-bon-effort-Isabelle-Queval.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">5</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">175.8</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2024-03-05</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">Desinstitutionnalisation.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">40</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">5313.3</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">P_pensées-culpabilisantes-post-trauma.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">1</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">108.8</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2022-06-25</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">TraductionGlossaire.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">9</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">132.8</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2024-12-16</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">Notes-contre-la-releve.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">22.5</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2024-05-17</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">Reprendre_la_pair_aidance_-_article_fanzine_HPL2_-_brouillon.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">14</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">100.5</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2023-11-29</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">à mettre en pageabolir-la-coercition-en-sante-mentale.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">20</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">492.9</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2019-04-08</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">brochure se soutenir en periode de stress - V2.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">24</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">679.3</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2025-03-23</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">com pers sourde.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">1</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">270.7</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2023-03-08</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">crip-5-web.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">56</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">9252.6</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2022-09-30</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">crip-magazine-2-mit-bildbeschreibungen.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">50</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">31553.0</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2017-10-21</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">crip-magazine1-pdf.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">24</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">6081.1</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2012-09-24</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">crip03-download-2.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">56</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">12378.6</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2019-12-16</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">cripmagazine4.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">48</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">5552.5</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2021-05-31</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">Guide_accessibiliser-un-evenement.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">11</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">367.0</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2022-04-29</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">Affiche-Stop-Telethon_v1_couleur.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">1</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">289.8</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2023-11-30</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">Affiche-Stop-Telethon_v1_gris.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">1</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">180.6</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2023-11-30</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">Affiche-Stop-Telethon_v2_couleur.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">1</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">292.4</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2023-11-30</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">Affiche-Stop-Telethon_v2_gris.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">1</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">182.5</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2023-11-30</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">Affiche-Stop-Telethon_v3_couleur.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">1</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">286.1</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2023-11-30</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">Affiche-Stop-Telethon_v3_gris.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">1</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">174.7</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2023-11-30</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">CQFD A3.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">1</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">1085.8</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2024-01-21</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">CQFD.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">4</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">1150.0</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2024-01-20</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">Elisa Rojas.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">1</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">421.9</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2024-01-16</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">Souffrir.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">1</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">5823.0</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2024-01-20</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">cant-sit-A4.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">1</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">4630.0</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2024-01-21</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">corps valide A5.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">1</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">1322.7</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2024-01-21</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">maladie A4.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">1</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">2644.9</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2024-01-16</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">poumons A4.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">1</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">3517.0</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2024-01-21</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">poumonsA3_2.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">1</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">3517.0</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2024-01-20</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">vis ma vie A4pdf.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">1</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">113.7</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2024-01-21</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">vis ma vie.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">371.2</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2024-01-20</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">Accessibiliser évènement - version DVLDTK - NB.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">12</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">333.1</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">IndirectObject(250, 0, 4355839504)</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">Accessibiliser évènement - version DVLDTK-livret A5.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">6</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">343.6</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">Accessibiliser évènement - version DVLDTK.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">12</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">355.1</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2024-09-05</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">Caring_Movements_ZIN_FR_web_040122.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">24</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">1744.3</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2022-04-01</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">ComingOffPsychDrugsHarmReductGuide-French.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">70</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">15285.9</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2013-10-06</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">En_Acces_Limite_Un_livret_pour_approfondir_Version_longue_compressed.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">44</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">280.2</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2023-06-06</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">FANZINE PHD.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">20</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">4690.9</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2023-03-18</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">L'Assistance Sexuelle - Med'H.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">4</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">181.4</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2024-09-30</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">Marge-n6.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">8</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">4546.2</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2013-05-18</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">Pour un antifascisme antivalidiste.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">12</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">745.5</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2024-09-05</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">Pour un antifascisme antivalidisteNB.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">12</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">811.2</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">IndirectObject(92, 0, 4355838352)</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">ROULE OU CRÈVE FINAL 2022.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">32</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">137.3</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2024-02-26</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">ROULE OU CRÈVE couverture.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">10.8</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2024-09-20</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">adjc-zine.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">13</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">6364.6</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2021-06-07</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">allo_la_folie.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">12</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">799.6</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2024-05-26</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">anorexie-temoignage-pleine-page-2021.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">16</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">382.9</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2021-11-28</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">anti-JOP-.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">8</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">3101.0</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">auto-defense.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">8</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">152.7</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2020-11-28</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">avant_txt.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">32</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">160.0</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2016-10-25</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">brochure-depression.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">20</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">464.4</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2021-08-14</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">brochure-utopiescriplivret_1_.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">8</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">251.4</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">ca_roule-2018-fil-60pA5-NB.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">60</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">563.3</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2021-06-10</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">comment-etre-une-alliee-pleine-page.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">8</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">472.7</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2018-05-24</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">completement-toque-timult8.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">9</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">4437.7</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2014-12-08</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">contre les ESAT A4.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">11</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">1569.7</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2023-05-23</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">culture_du_validisme-juin2005-20pa4.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">20</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">196.9</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">elle-doit-etre-folle-pleine-page.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">68</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">2203.4</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2018-03-15</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">en-defense-de-l-anormalite.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">17</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">2459.6</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2021-06-17</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">guide_front2meres.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">14</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">22064.8</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">--</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">hello3-print1.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">29</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">5473.4</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2016-11-14</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">l-abolition-carcerale-doit-inclure-la.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">8</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">1382.0</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2021-06-17</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">langage-non-validiste.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">16</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">167.2</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2020-04-29</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">memo-manif-pas-trop-validiste.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">24</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">1548.5</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2020-08-16</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">migraine-histoire-brute.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">24</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">682.6</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2017-11-17</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">milieu-militant-inclusif-neurodivergen.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">8</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">362.6</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2018-05-25</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">mini-memo-manif-pas-validiste.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">2</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">113.0</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2020-07-16</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">piege-es-dans-le-changement.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">20</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">144.2</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2021-01-06</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">plan-d-action-pleine-page.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">27</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">153.6</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2019-04-03</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">psychiatrie-la-peur-change-de-camps-gi.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">55</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">992.8</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2011-12-15</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">ragir-et-soutenir-nb.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">60</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">2420.8</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2013-04-27</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">strategie-entente-de-voix-pleine-page.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">8</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">410.1</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2020-05-02</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">tranzistor-70.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">17</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">17249.7</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2021-05-28</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">tu-nes-pas-ton-diagnostic-zine-a4.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">1</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">42.5</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2017-11-10</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">yapasviol-pleine-page.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">16</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">358.3</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2018-07-15</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">zine-fou-fol-et-final.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">36</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">18818.8</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">IndirectObject(653, 0, 4355845456)</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">handicapes-mechants-1974-n01.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">6</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">411.4</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2021-07-21</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">handimechants-n01.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">10</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">18771.1</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2013-10-05</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">handimechants-n02.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">10</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">17548.3</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2013-10-05</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">handimechants-n02bis.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">12</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">3664.9</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2014-01-31</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">handimechants-n03.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">10</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">3106.2</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2014-01-31</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">handimechants-n04.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">12</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">4193.5</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2014-01-31</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">handimechants-n05.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">8</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">15286.3</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2013-10-05</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">handimechants-n06.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">12</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">3737.2</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2014-01-31</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">handimechants-n07-08.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">12</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">5344.2</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2014-01-31</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">handimechants-n09-10.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">12</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">21089.4</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2013-10-05</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">handimechants-n11-12.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">12</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">22332.8</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2013-10-05</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">handimechants-n13-14.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">12</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">5283.7</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2014-01-31</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">handimechants-n15-16.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">12</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">4689.8</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2014-01-31</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">A qui profite la chasse au faux handicapes.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">8</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">1295.3</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2023-08-02</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">CRIP-Compilation de textes à propos de Luttes handiesNB.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">52</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">14328.8</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2023-07-22</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">En finir avec la charite sexuelle.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">8</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">1141.4</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2023-08-02</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">Toujours mal quelque part-NB.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">44</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">8390.6</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2024-01-26</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">conquerir le monde une place de parking a la fois.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">4</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">842.6</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2023-08-02</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">et a la fin tout le monde perd.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">4</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">519.8</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2023-08-02</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">et toi tu fais quoi dans la vie.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">4</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">542.0</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2023-08-02</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">feminisme et anti validisme.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">4</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">602.7</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2023-08-02</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">intersectionnalite entre emotions et obstacles.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">8</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">916.0</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2023-08-02</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">maplus grande ambition dans la vie nest pas de guerir.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">4</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">511.0</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2023-08-02</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">militantisme ou marketting.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">4</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">560.8</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2023-08-02</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">pour un validisme fun et innovant.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">4</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">600.6</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2023-08-02</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">fanzine photoshop_compressed.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">33</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">3454.2</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2022-10-12</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">le corps n'oubli rien.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">36</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">334.4</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2023-08-10</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">manifesto.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">8</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">428.7</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2023-08-28</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">psyA4aider_ses_ami.es_qui_ont_parfois_envie_de_mourrir-2019-pageparpage-36pa5-2.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">36</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">1803.1</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2023-06-04</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">psyA4folieoppressionNB.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">60</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">3128.6</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2018-05-22</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">psyA4guide_pour_survivre_a_la_psychose-32pA5-fil.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">32</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">495.2</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2020-05-02</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">psyA4je_suis_pas_froid_et_hautain_autisme-44p-avril2020-fil.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">44</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">2766.4</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2020-05-21</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">psyA4sur_le_psyvalidisme_et_la_place_des_personnes_handies-psy_dans_les_milieux_militants.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">12</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">1103.3</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s2"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">Interdependence_Crip_Collective_Care_and.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">73</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">2665.9</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2021-01-04</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p2"><span class="s1">ob_e56779_mfc-on-mh-and-racism.pdf</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">8</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">52.5</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">2018-03-11</span></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>
